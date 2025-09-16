@@ -1,19 +1,26 @@
 // src/App.jsx
-import React from 'react';
-import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
-import LoginPage from './pages/LoginPage';
-import StudentPortalPage from './pages/StudentPortalPage';
-import AdminDashboardPage from './pages/AdminDashboardPage';
-import Header from './components/UI/Header';
+import { BrowserRouter as Router, Routes, Route, Navigate } from 'react-router-dom';
+import StudentLayout from './components/student/StudentLayout';
+import StudentDashboard from './pages/StudentDashboard';
+import WellnessCheckinPage from './pages/WellnessCheckinPage';
+import MyAcademicsPage from './pages/MyAcademics';
+import PrivacyConsentPage from './pages/PrivacyConsent';
+import ForumFeedPage from './pages/ForumFeed'; // 1. IMPORT THE FORUM PAGE
 
 function App() {
   return (
     <Router>
-      <Header />
       <Routes>
-        <Route path="/" element={<LoginPage />} />
-        <Route path="/student-portal" element={<StudentPortalPage />} />
-        <Route path="/admin-dashboard" element={<AdminDashboardPage />} />
+        <Route path="/student" element={<StudentLayout />}>
+          <Route index element={<Navigate to="dashboard" />} />
+          <Route path="dashboard" element={<StudentDashboard />} />
+          <Route path="wellness" element={<WellnessCheckinPage />} />
+          <Route path="academics" element={<MyAcademicsPage />} />
+          <Route path="privacy" element={<PrivacyConsentPage />} />
+          <Route path="forum" element={<ForumFeedPage />} /> {/* 2. ADD THE FORUM ROUTE */}
+        </Route>
+        
+        <Route path="/" element={<Navigate to="/student/dashboard" />} />
       </Routes>
     </Router>
   );
