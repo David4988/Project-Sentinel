@@ -11,13 +11,13 @@ export default {
         'sentinel-green': '#2ECC71',
         'sentinel-yellow': '#F1C40F',
         'sentinel-red': '#E74C3C',
-        'sentinel-bg': '#F8F9FA',
-        'sentinel-text-dark': '#495057',
+        'sentinel-bg': '#f8f9fa',
+        'sentinel-text-dark': '#344054',
       },
       fontFamily: {
-        'poppins': ['Poppins', 'sans-serif'],
-        'inter': ['Inter', 'sans-serif'],
-      }
+        poppins: ['Poppins', 'sans-serif'],
+        inter: ['Inter', 'sans-serif'],
+      },
     },
   },
   plugins: [],
