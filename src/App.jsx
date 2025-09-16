@@ -1,6 +1,11 @@
 // src/App.jsx
 import { BrowserRouter as Router, Routes, Route, Navigate } from 'react-router-dom';
-import AdminDashboardPage from './pages/AdminDashboardPage';
+import StudentLayout from './components/student/StudentLayout';
+import StudentDashboard from './pages/StudentDashboard';
+import WellnessCheckinPage from './pages/WellnessCheckinPage';
+import MyAcademicsPage from './pages/MyAcademics';
+import PrivacyConsentPage from './pages/PrivacyConsent';
+import ForumFeedPage from './pages/ForumFeed'; // 1. IMPORT THE FORUM PAGE
 
 /**
  * The main application router.
@@ -11,14 +16,16 @@ function App() {
   return (
     <Router>
       <Routes>
-        {/* Main route for the admin command center */}
-        <Route path="/admin" element={<AdminDashboardPage />} />
+        <Route path="/student" element={<StudentLayout />}>
+          <Route index element={<Navigate to="dashboard" />} />
+          <Route path="dashboard" element={<StudentDashboard />} />
+          <Route path="wellness" element={<WellnessCheckinPage />} />
+          <Route path="academics" element={<MyAcademicsPage />} />
+          <Route path="privacy" element={<PrivacyConsentPage />} />
+          <Route path="forum" element={<ForumFeedPage />} /> {/* 2. ADD THE FORUM ROUTE */}
+        </Route>
         
-        {/* A helpful redirect to send the root URL to our admin page */}
-        <Route path="/" element={<Navigate to="/admin" />} />
-        
-        {/* You can add a 404 page or a catch-all redirect later */}
-        <Route path="*" element={<Navigate to="/admin" />} />
+        <Route path="/" element={<Navigate to="/student/dashboard" />} />
       </Routes>
     </Router>
   );
